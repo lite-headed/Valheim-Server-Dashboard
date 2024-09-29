@@ -78,11 +78,15 @@ The **GG Valheim Server Dashboard** is a web-based interface designed to track t
 
 ### Current Dashboard
 
-<img src="./screenshots/dashboard.webp" alt="Dashboard" width="800" />
+<a href="https://ggserver.cc">
+  <img src="./screenshots/dashboard.webp" alt="Dashboard" width="800" />
+</a>
 
 ### Basic Dashboard (Legacy)
 
-<img src="./screenshots/basic_dashboard.webp" alt="Basic Dashboard" width="800" />
+<a href="https://ggserver.cc/basic">
+  <img src="./screenshots/basic_dashboard.webp" alt="Basic Dashboard" width="800" />
+</a>
 
 ## Data Sources
 
