@@ -4,7 +4,7 @@
 
 # Set the output directory
 OUTPUT_DIR="/mnt/data-disk/valheim-server/data/htdocs"
-INPUT_DIR="/mnt/data-disk/valheim-server/data/web-page-unprocessed"
+INPUT_DIR=$(dirname "$0")
 
 # Function to check the success of a command
 check_success() {
