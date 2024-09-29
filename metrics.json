@@ -1,0 +1,35 @@
+{
+    "timestamp": "2024-09-29T16:18:04.158319+00:00",
+    "cpu": {
+        "per_core_percent": [
+            4.8,
+            3.5
+        ]
+    },
+    "memory": {
+        "total_bytes": 8271114240,
+        "available_bytes": 5265682432,
+        "used_bytes": 2667909120,
+        "percent": 36.3
+    },
+    "disk": {
+        "/": {
+            "total_bytes": 30084825088,
+            "used_bytes": 5500174336,
+            "free_bytes": 24567873536,
+            "percent": 18.3
+        },
+        "/mnt": {
+            "total_bytes": 78673350656,
+            "used_bytes": 32768,
+            "free_bytes": 74630115328,
+            "percent": 0.0
+        },
+        "/mnt/data-disk": {
+            "total_bytes": 67317051392,
+            "used_bytes": 7715459072,
+            "free_bytes": 56148893696,
+            "percent": 12.1
+        }
+    }
+}

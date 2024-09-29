@@ -1,0 +1,251 @@
+/* variable for error color */
+:root {
+    --error-color: #D32F2F;
+    --data-label-font-size: 14px;
+    --axisFontSize: 16px;
+    --card-color: #333;
+    --text-color: #f4f4f9;
+    --update-text-color: #ccc;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c;
+    color: var(--text-color);
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* Ensure the header stays above other elements */
+    padding: 2vh 0 0 0;
+    text-align: center;
+    font-size: 3.75vh;
+    background-color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 2vh;
+    width: 12vh;
+}
+
+.last-update {
+    padding: 1vh 0;
+    font-size: 2vh;
+    color: var(--update-text-color);
+}
+
+.last-update {
+    padding: 1vh 0;
+    font-size: 2vh;
+    color: var(--update-text-color);
+    position: relative;
+    will-change: opacity, transform;
+    /* Forces Hardware Acceleration */
+    transform: translateZ(0);
+}
+
+.last-update-fade-out {
+    animation: fadeOutUp 0.6s ease-in-out forwards;
+}
+
+.last-update-fade-in {
+    animation: fadeInUp 0.6s ease-in-out forwards;
+}
+
+@keyframes fadeOutUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+    padding: 2vh 0;
+}
+
+.dashboard-grid {
+    display: grid;
+    width: 80vw;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.card {
+    margin: 0 2vw;
+
+    padding: 1vh 2vw;
+    border-radius: 15px;
+    background-color: var(--card-color);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    font-size: 2vh;
+}
+
+.server-player-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    margin: 0 0 3vh 0;
+}
+
+.player-text {
+    margin: 1vh 0;
+}
+
+.metrics-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    padding: 0 2vw;
+}
+
+.metric-chart-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#diskChartContainer {
+    margin: 0 0 3vh 0;
+}
+
+canvas {
+    background-color: var(--card-color);
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 2vh;
+}
+
+canvas.error-canvas {
+    background-color: var(--error-color);
+}
+
+.chart-title,
+.status-title,
+.players-title {
+    color: #fff;
+    font-size: 2.75vh;
+    text-align: center;
+    margin-bottom: 1vh;
+}
+
+/* portrait desktop and not mobile */
+@media screen and (orientation: portrait) {
+    :root {
+        --data-label-font-size: 12px;
+        --axisFontSize: 18px;
+    }
+
+    header {
+        font-size: 4.25vw;
+    }
+
+    .last-update {
+        font-size: 2vw;
+    }
+
+    .logo {
+        width: 12.5vw;
+    }
+
+    .dashboard-grid {
+        width: 90vw;
+    }
+
+    .card {
+        padding: 1vh 4vw;
+        font-size: 2vw;
+    }
+
+    .chart-title,
+    .status-title,
+    .players-title {
+        font-size: 3vw;
+    }
+}
+
+/* portrait desktop small width */
+@media screen and (orientation: portrait) and (max-width: 776px) {
+    :root {
+        --data-label-font-size: 12px;
+        --axisFontSize: 18px;
+    }
+
+    header {
+        font-size: 6vw;
+    }
+
+    .last-update {
+        font-size: 2.25vw;
+    }
+
+    .logo {
+        width: 12.5vw;
+    }
+
+    .dashboard-grid {
+        width: 90vw;
+    }
+
+    .card {
+        padding: 1vh 4vw;
+        font-size: 3vw;
+    }
+
+    .chart-title,
+    .status-title,
+    .players-title {
+        font-size: 4vw;
+    }
+}
+
+/* mobile */
+@media screen and (max-width: 425px) {
+    :root {
+        --data-label-font-size: 7px;
+        --axisFontSize: 12px;
+    }
+
+    header {
+        font-size: 2.75vh;
+    }
+
+    .logo {
+        width: 8vh;
+    }
+
+    .card {
+        padding: 1vh 6vw;
+    }
+}
