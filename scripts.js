@@ -233,7 +233,7 @@ function updateCpuChart(cpuData) {
                 const value = context.parsed.x;
                 if (value === 0) return '';
 
-                return `${value}% Usage`;
+                return ` ${value}% Usage`;
             }
         };
 
@@ -286,7 +286,7 @@ function updateDiskChart(diskData) {
                 const totalMemoryGB = (diskData[diskLabels[index]].total_bytes / (1024 ** 3)).toFixed(2);
                 const percent = diskData[diskLabels[index]].percent.toFixed(2);
 
-                return `${usedGB}GB of ${totalMemoryGB}GB (${percent}%)`;
+                return ` ${usedGB}GB of ${totalMemoryGB}GB (${percent}%)`;
             }
         };
 
@@ -334,7 +334,7 @@ function updateMemoryChart(memoryData) {
                 const label = context.chart.data.labels[context.dataIndex];
                 const usedGB = context.parsed.toFixed(2);
 
-                return `${usedGB}GB of ${totalMemoryGB}GB (${((context.parsed / totalMemoryGB) * 100).toFixed(2)}%)`;
+                return ` ${usedGB}GB of ${totalMemoryGB}GB (${((context.parsed / totalMemoryGB) * 100).toFixed(2)}%)`;
             }
         }
 
