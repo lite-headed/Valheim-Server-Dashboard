@@ -1,10 +1,10 @@
 # GG Valheim Server Dashboard
 
-<center>
+<p align="center">
     <a href="https://ggserver.cc">
         <img src="./logo.webp" alt="Logo" width="200" />
     </a>
-</center>
+</p>
 
 This repository contains the code and scripts used to monitor and display real-time status and metrics for a dedicated Valheim game server.
 
@@ -78,11 +78,11 @@ The **GG Valheim Server Dashboard** is a web-based interface designed to track t
 
 ### Current Dashboard
 
-![Current Dashboard](./screenshots/dashboard.webp =800x)
+<img src="./screenshots/dashboard.webp" alt="Dashboard" width="800" />
 
 ### Basic Dashboard (Legacy)
 
-![Basic Dashboard](./screenshots/basic_dashboard.webp =800x)
+<img src="./screenshots/basic_dashboard.webp" alt="Basic Dashboard" width="800" />
 
 ## Data Sources
 
