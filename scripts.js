@@ -243,7 +243,7 @@ function updateCpuChart(cpuData) {
         cpuChart = new Chart(document.getElementById('cpuChart'), {
             type: 'bar',
             data: chartData,
-            options: getBarChartOptions()
+            options: barChartOptions
         });
     }
 }
@@ -279,9 +279,14 @@ function updateDiskChart(diskData) {
         let diskTooltipPlugin = getToolTipPlugin();
         diskTooltipPlugin.callbacks = {
             label: (context) => {
-                const label = context.chart.data.labels[context.dataIndex];
-                const usedGB = context.parsed.toFixed(2);
-                return `${usedGB}GB of ${totalMemoryGB}GB (${((context.parsed / totalMemoryGB) * 100).toFixed(2)}%)`;
+                // const label = context.chart.data.labels[context.dataIndex];
+                const usedGB = context.parsed.x.toFixed(2);
+                const index = context.dataIndex;
+
+                const totalMemoryGB = (diskData[diskLabels[index]].total_bytes / (1024 ** 3)).toFixed(2);
+                const percent = diskData[diskLabels[index]].percent.toFixed(2);
+
+                return `${usedGB}GB of ${totalMemoryGB}GB (${percent}%)`;
             }
         };
 
@@ -291,7 +296,7 @@ function updateDiskChart(diskData) {
         diskChart = new Chart(document.getElementById('diskChart'), {
             type: 'bar',
             data: diskChartData,
-            options: getBarChartOptions()
+            options: barChartOptions
         });
     }
 }
@@ -355,7 +360,7 @@ function updateMemoryChart(memoryData) {
                             return `${formattedValue}GB\n(${((value / totalMemory) * 100).toFixed(2)}%)`;
                         }
                     },
-                    tooltip: getToolTipPlugin(),
+                    tooltip: memoryTooltipPlugin,
                 }
             }
         });
