@@ -183,6 +183,20 @@ function getFallbackMetricsData() {
 }
 
 /**
+ * Tooltip plugin configuration for Chart.js charts.
+ * @returns {Object} A configuration object for Chart.js tooltips.
+ */
+function getToolTipPlugin() {
+    return {
+        enabled: true,
+        mode: 'nearest',
+        padding: 10,
+        bodyFont: { size: 16 },
+        titleFont: { size: 18 }
+    }
+}
+
+/**
  * Updates the CPU chart with the provided data.
  * @param {Object} cpuData - The data for CPU usage per core.
  */
@@ -211,6 +225,20 @@ function updateCpuChart(cpuData) {
                 }
             ]
         };
+
+        let cpuTooltipPlugin = getToolTipPlugin();
+        cpuTooltipPlugin.callbacks = {
+            label: (context) => {
+                //const label = context.chart.data.labels[context.dataIndex];
+                const value = context.parsed.x;
+                if (value === 0) return '';
+
+                return `${value}% Usage`;
+            }
+        };
+
+        let barChartOptions = getBarChartOptions();
+        barChartOptions.plugins.tooltip = cpuTooltipPlugin;
 
         cpuChart = new Chart(document.getElementById('cpuChart'), {
             type: 'bar',
@@ -248,25 +276,23 @@ function updateDiskChart(diskData) {
             ]
         };
 
+        let diskTooltipPlugin = getToolTipPlugin();
+        diskTooltipPlugin.callbacks = {
+            label: (context) => {
+                const label = context.chart.data.labels[context.dataIndex];
+                const usedGB = context.parsed.toFixed(2);
+                return `${usedGB}GB of ${totalMemoryGB}GB (${((context.parsed / totalMemoryGB) * 100).toFixed(2)}%)`;
+            }
+        };
+
+        let barChartOptions = getBarChartOptions();
+        barChartOptions.plugins.tooltip = diskTooltipPlugin;
+
         diskChart = new Chart(document.getElementById('diskChart'), {
             type: 'bar',
             data: diskChartData,
             options: getBarChartOptions()
         });
-    }
-}
-
-/**
- * Tooltip plugin configuration for Chart.js charts.
- * @returns {Object} A configuration object for Chart.js tooltips.
- */
-function getToolTipPlugin() {
-    return {
-        enabled: true,
-        mode: 'nearest',
-        padding: 10,
-        bodyFont: { size: 16 },
-        titleFont: { size: 18 }
     }
 }
 
@@ -296,6 +322,16 @@ function updateMemoryChart(memoryData) {
                 }
             ]
         };
+
+        let memoryTooltipPlugin = getToolTipPlugin();
+        memoryTooltipPlugin.callbacks = {
+            label: (context) => {
+                const label = context.chart.data.labels[context.dataIndex];
+                const usedGB = context.parsed.toFixed(2);
+
+                return `${usedGB}GB of ${totalMemoryGB}GB (${((context.parsed / totalMemoryGB) * 100).toFixed(2)}%)`;
+            }
+        }
 
         memoryChart = new Chart(document.getElementById('memoryChart'), {
             type: 'doughnut',
