@@ -396,7 +396,11 @@ function getBarChartOptions() {
                 display: true,
                 color: 'white',
                 font: { size: dataLabelFontSize() },
-                formatter: (value) => (value === 100 ? '' : value)
+                formatter: (value) => {
+                	if(value === 100 || value === 0) return '';
+
+                	return value;
+                }
             },
             tooltip: getToolTipPlugin(),
         }
