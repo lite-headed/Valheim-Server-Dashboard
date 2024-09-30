@@ -286,7 +286,7 @@ function updateDiskChart(diskData) {
                 const totalGB = (diskData[diskLabels[index]].total_bytes / (1024 ** 3)).toFixed(2);
                 const usedGB = (diskData[diskLabels[index]].used_bytes / (1024 ** 3)).toFixed(2);
 
-                return ` ${usedGB}GB of ${total}GB (${percent}%)`;
+                return ` ${usedGB}GB of ${totalGB}GB (${percent}%)`;
             }
         };
 
