@@ -280,13 +280,13 @@ function updateDiskChart(diskData) {
         diskTooltipPlugin.callbacks = {
             label: (context) => {
                 // const label = context.chart.data.labels[context.dataIndex];
-                const usedGB = context.parsed.x.toFixed(2);
+                const percent = context.parsed.x.toFixed(2);
                 const index = context.dataIndex;
 
-                const totalMemoryGB = (diskData[diskLabels[index]].total_bytes / (1024 ** 3)).toFixed(2);
-                const percent = diskData[diskLabels[index]].percent.toFixed(2);
+                const totalGB = (diskData[diskLabels[index]].total_bytes / (1024 ** 3)).toFixed(2);
+                const usedGB = (diskData[diskLabels[index]].used_bytes / (1024 ** 3)).toFixed(2);
 
-                return ` ${usedGB}GB of ${totalMemoryGB}GB (${percent}%)`;
+                return ` ${usedGB}GB of ${total}GB (${percent}%)`;
             }
         };
 
