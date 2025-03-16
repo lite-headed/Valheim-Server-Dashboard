@@ -5,7 +5,7 @@ FROM nginx:alpine
 COPY /nginx/nginx.conf /etc/nginx/nginx.conf
 
 # (Optional) Copy your HTML/static files into the container
-COPY . /usr/share/nginx/html/
+COPY ./app /usr/share/nginx/html
 
 # Expose port 80 (or your desired port)
 EXPOSE 80
