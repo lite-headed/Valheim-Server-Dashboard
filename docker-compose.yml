@@ -9,3 +9,6 @@ services:
     volumes:
       - ./app:/usr/share/nginx/html
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+networks:
+  valheim-net:
+    external: true
