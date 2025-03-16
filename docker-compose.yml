@@ -1,0 +1,11 @@
+services:
+  nginx:
+    build:
+      context: . 
+    ports:
+      - "80:80"
+    links:
+      - valheim-server
+    volumes:
+      - ./app:/usr/share/nginx/html
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf

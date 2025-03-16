@@ -26,8 +26,8 @@ export async function loadStatus() {
     statusCard.style.backgroundColor = `${cardColor()}`;
 
     try {
-        const response = await fetch('status.json');
-        const data = await response.json();
+        const serverAddress = 'valheim-server';
+        const data = await fetchValheimStatus(serverAddress);
         const lastUpdate = new Date(data.last_status_update).toLocaleTimeString();
 
         if (data.error) {
@@ -67,6 +67,41 @@ export async function loadStatus() {
         statusCard.style.backgroundColor = `${errorColor()}`;
     }
 
+}
+
+async function fetchValheimStatus(serverAddress) {
+    try {
+        const url = `http://${serverAddress}/status.json`;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            console.warn(`HTTP error! status: ${response.status}. Attempting to fetch local status.json.`);
+            return await fetchLocalStatus(); // Attempt to fetch local file
+        }
+
+        const data = await response.json();
+        console.log("Valheim Status (Remote):", data);
+        return data;
+    } catch (error) {
+        console.error("Error fetching remote Valheim status:", error);
+        console.warn("Attempting to fetch local status.json.");
+        return await fetchLocalStatus(); // Attempt to fetch local file on any error
+    }
+}
+
+async function fetchLocalStatus() {
+    try {
+        const response = await fetch('status.json'); // Fetch local file
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status} (local file)`);
+        }
+        const data = await response.json();
+        console.log("Valheim Status (Local):", data);
+        return data;
+    } catch (localError) {
+        console.error("Error fetching local status.json:", localError);
+        return null; // Return null if both remote and local fail
+    }
 }
 
 /**
